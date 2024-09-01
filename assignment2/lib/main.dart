@@ -33,8 +33,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _controller = TextEditingController();
   final List<String> _texts = [];
-  // ignore: prefer_typing_uninitialized_variables
-  var _hoveredIndex;
+
   @override
   void dispose() {
     _controller.dispose();
@@ -44,9 +43,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void _handleButtonClick() {
     setState(() {
       if (_controller.text.isNotEmpty) {
-        _texts.insert(
-            0, _controller.text); // Add new text to the beginning of the list
-        _controller.clear(); // Clear the text field after submitting
+        _texts.add(_controller.text);
+        _controller.clear();
       }
     });
   }
@@ -88,18 +86,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   return InkWell(
                     onTap: () {
                       _handleTextClick(index);
-                    }, // You can add functionality for a tap if needed
-                    onHover: (isHovered) {
-                      setState(() {
-                        _hoveredIndex = isHovered ? index : -1;
-                      });
                     },
-                    child: Container(
-                      color: _hoveredIndex == index
-                          ? Colors.grey[300]
-                          : Colors.transparent,
-                      child: ListTile(
-                        title: Text(_texts[index]),
+                    child: ListTile(
+                      title: Text(
+                        _texts[index],
+                        style: const TextStyle(color: Colors.black),
                       ),
                     ),
                   );
