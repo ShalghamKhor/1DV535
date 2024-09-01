@@ -300,7 +300,7 @@ class Weather {
 }
 
 class WeatherService {
-  static const String apiKey = 'f2d052354c9b7ac73586016aa0b939b4';
+  static const String apiKey = '*******************';
   static const String apiUrl =
       'https://api.openweathermap.org/data/2.5/weather';
 
